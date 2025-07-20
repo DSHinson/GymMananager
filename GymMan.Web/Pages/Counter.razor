@@ -1,0 +1,26 @@
+﻿@page "/counter"
+@using GymMan.Services.CQRS
+@using GymMan.Services.CQRS.Commands
+@using GymMan.Services.CQRS.Commands.Events
+
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @_currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    [Inject]
+    public EventPlayerService loginDispatcher { get; set; }
+
+    private int _currentCount = 0;
+
+    private void IncrementCount()
+    {
+        _currentCount++;
+        loginDispatcher.EmitAsync(new loginEvent() { });
+    }
+}
