@@ -2,6 +2,7 @@
 @using GymMan.Services.CQRS
 @using GymMan.Services.CQRS.Commands
 @using GymMan.Services.CQRS.Commands.Events
+@using GymMan.Services.CQRS.Events
 
 
 <PageTitle>Counter</PageTitle>
@@ -18,9 +19,9 @@
 
     private int _currentCount = 0;
 
-    private void IncrementCount()
+    private async Task IncrementCount()
     {
         _currentCount++;
-        loginDispatcher.EmitAsync(new loginEvent() { });
+        await loginDispatcher.EmitAsync(new loginEvent() { });
     }
 }
